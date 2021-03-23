@@ -1,5 +1,5 @@
 # Type aliases
-
+# Changed in https://docs.python.org/3.9/library/typing.html
 from typing import List
 
 Vector = List[float]

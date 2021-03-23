@@ -1,28 +1,29 @@
 from ftplib import FTP
 
-HOST = "192.168.1.75"
+# Работаем только с настроенной директорией
+# https://linuxconfig.org/how-to-setup-ftp-server-on-ubuntu-20-04-focal-fossa-linux
+
+HOST = "192.168.1.93"
 USER = "ftpuser"
 PASSWORD = "ftpuser"
 
 ftp = FTP(host=HOST, user=USER, passwd=PASSWORD)
 
+# Выводим список файлов
 print(ftp.dir())
 
 # Переходим в папку
 ftp.cwd('files')
-
-# Смотрим что в директории
 print(ftp.dir())
-print(ftp.retrlines('LIST'))
 
-# Скачиваем нужный файл
-with open('Habr.py', 'wb') as fp:
-    ftp.retrbinary('RETR Habr.py', fp.write)
+# # Скачиваем нужный файл
+# with open('Example.py', 'wb') as fp:
+#     ftp.retrbinary('RETR file.py', fp.write)
 
-# Создание папки
-# ftp.mkd('my_dir')
-# print(ftp.dir())
-
+# # Создание папки
+# # ftp.mkd('my_dir')
+# # print(ftp.dir())
+#
 # Загружаем наш файл в эту папку
 with open('logo.png', 'rb') as fp:
     ftp.storbinary('STOR logo.png', fp)
